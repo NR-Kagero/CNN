@@ -1,0 +1,23 @@
+import tensorflow as tf
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Dropout, Flatten, MaxPool2D, Conv2D
+from keras.datasets import mnist
+
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+model = Sequential()
+# -------------------------------------------------------------------------------------------------------
+model.add(Conv2D(64, (3, 3)))
+model.add(Activation("relu"))
+model.add(MaxPool2D(pool_size=(2, 2)))
+# -------------------------------------------------------------------------------------------------------
+model.add(Conv2D(64, (3, 3)))
+model.add(Activation("relu"))
+model.add(MaxPool2D(pool_size=(2, 2)))
+# -------------------------------------------------------------------------------------------------------
+model.add(Flatten())
+model.add(Dense(64))
+# -------------------------------------------------------------------------------------------------------
+model.add(Dense(10))
+model.add(Activation(tf.nn.softmax_cross_entropy_with_logits))
+# -------------------------------------------------------------------------------------------------------
+model.compile(loss="Categorical_crossentropy",optimizer="adam",metrics=["accuracy"])
