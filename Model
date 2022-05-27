@@ -33,3 +33,5 @@ model.add(Activation("softmax"))
 # -------------------------------------------------------------------------------------------------------
 model.compile(loss="sparse_categorical_crossentropy",optimizer="adam",metrics=["accuracy"])
 model.fit(x_train,y_train, 16, 10)
+model.evaluate(x_test,y_test)
+model.summary()
